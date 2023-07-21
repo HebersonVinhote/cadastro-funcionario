@@ -1,4 +1,5 @@
 import textwrap
+from tabulate import tabulate
 
 departamento = {
     'funcionarios': []
@@ -36,7 +37,7 @@ def excluir_funcionario():
 def main():
     while True:
         menu = '''
-        1 - Para ver os funcionários
+        1 - Visualizar lista de funcionários
         2 - Adicionar funcionário
         3 - Excluir funcionário
         '''
@@ -48,6 +49,7 @@ def main():
         elif opcao == 3:
             excluir_funcionario()
         elif opcao == 1:
-            print(departamento)
+            tabela = tabulate(departamento['funcionarios'], headers='keys', tablefmt='grid')
+            print(tabela)
 
 main()
