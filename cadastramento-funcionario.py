@@ -4,6 +4,29 @@ from tabulate import tabulate
 departamento = {
     'funcionarios': []
 }
+def procurarFuncionario():
+    try:
+        mensagem = '''
+        Buscar Funcionario por:
+        
+        [1] - ID Funcionario
+        [2] - Nome do Funcionario
+        [3] - CPF do Funcionario
+        '''
+        mensagem_dedent = textwrap.dedent(mensagem)
+        opcao = int(input(mensagem_dedent))
+
+        if opcao == 1:
+            print('Procurar po ID')
+        elif opcao == 2:
+            print('Procurar por Nome')
+        elif opcao == 3:
+            print('Procurar por CPF')
+        else:
+            print('Opção inválida. Escolha uma opção válida (1, 2 ou 3).')
+
+    except ValueError:
+        print('Digite uma Opção Valida.')
 
 class Funcionario:
     contador_id = 1
@@ -40,16 +63,19 @@ def main():
         1 - Visualizar lista de funcionários
         2 - Adicionar funcionário
         3 - Excluir funcionário
+        4 - Buscar Funcionario
         '''
         menu_dedent = textwrap.dedent(menu)
         opcao = int(input(menu_dedent))
 
-        if opcao == 2:
+        if opcao == 1:
+            tabela = tabulate(departamento['funcionarios'], headers='keys', tablefmt='grid')
+            print(tabela)
+        elif opcao == 2:
             novo_funcionario()
         elif opcao == 3:
             excluir_funcionario()
-        elif opcao == 1:
-            tabela = tabulate(departamento['funcionarios'], headers='keys', tablefmt='grid')
-            print(tabela)
+        elif opcao == 4:
+            procurarFuncionario()
 
 main()
